@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				vertical-align: top;
+			}
+			ul,ol{
+				list-style: none;
+			}
+			.box{
+				width: 300px;
+				height: 200px;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.box ul{
+				width: 600%;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.box ul li{
+				float: left;
+			}
+			.box ol{
+				width: 130px;
+				height: 20px;
+				position: absolute;
+				bottom: 22px;
+				right: 10px;
+			}
+			.box ol li{
+				width: 20px;
+				height: 20px;
+				background-color: orange;
+				color: white;
+				margin-left: 6px;
+				float: left;
+				text-align: center;
+				line-height: 20px;
+			}
+			
+			.box ol li.current{
+				background: red;
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li><img src="imgs/01.jpg"></li>
+				<li><img src="imgs/02.jpg"></li>
+				<li><img src="imgs/03.jpg"></li>
+				<li><img src="imgs/04.jpg"></li>
+				<li><img src="imgs/01.jpg"></li>
+			</ul>
+			<ol>
+				<li class="current">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				
+			</ol>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		var index=0;
+		function fn(){
+			index++;
+			if (index>4) {
+				$("ul").css("left",0);
+				index=1;
+			}
+			var left=-index*$("img").width()+"px";
+			$("ul").animate({
+				"left":left
+			})
+			if (index==4) {
+				$("ol li:eq(0)").addClass("current").siblings("li").removeClass("current");
+			} else{
+				$("ol li:eq("+index+")").addClass("current").siblings("li").removeClass("current");
+			}
+		}
+		setInterval(fn,1000);
+	</script>
+</html>
